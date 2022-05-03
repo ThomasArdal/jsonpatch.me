@@ -1,71 +1,139 @@
-<html>
-  <head>
-    <meta name="description" value="" />
-    <meta charset="utf-8">
-    <meta http-equiv="cleartype" content="on">
-    <meta name="description" content="Transform your JSON files with the free online JSON Patch tool. Supports both on-demand patching and uploading Patch files through the API." />
-    <title>jsonpatch.me - Free online JSON Patch tool and API</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="yes" name="apple-mobile-web-app-capable">
-    <meta name="apple-mobile-web-app-title" content="jsonpatch.me">
-    <link rel="canonical" href="https://jsonpatch.me/">
-  </head>
-  <body>
-    <h1>jsonpatch.me - Free JSON Patch tool and API</h1>
-    <p>jsonpatch.me is a free online service for running JSON Patch commands. JSON Patch is a transformation language for JSON files written in JSON. If you remember XSLT for transforming an XML file to another XML file using XML transformation commands, JSON Patch is sort of the same but for JSON files.</p>
-    <p>jsonpatch.me has two features so far:</p>
-    <ol>
-      <li><strong>On-demand Patch</strong> - If you need a single patch using a source JSON file and a JSON Patch file, you can use the on-demand tool available below.</li>
-      <li><strong>Patch API</strong> - If you need to run JSON Patch commands on a continuous basis (like from a build-server), you can use the JSON Patch API documented below. The JSON Patch API will let you upload JSON Patch commands on run these commands by making POST requests with the JSON to patch in the body.</li>
-    </ol>
-    <h2>On-demand Patch</h2>
-    <p>Input JSON and one or more patch commands below and see magic happen:</p>
-    <p>JSON</p>
-    <textarea style="width:100%;" rows="5">{
-      "baz": "qux",
-      "foo": "bar"
-    }</textarea>
-    <p>Patch</p>
-    <textarea style="width:100%;" rows="5">[
-      { "op": "replace", "path": "/baz", "value": "boo" },
-      { "op": "add", "path": "/hello", "value": ["world"] },
-      { "op": "remove", "path": "/foo" }
-    ]</textarea>
-    <p>
-      <button>Patch</button>
-    </p>
-    <p>Result</p>
-    <textarea style="width:100%;" rows="5">{
-      "baz": "boo",
-      "hello": ["world"]
-    }</textarea>
-    <h2>Patch API</h2>
-    <p>Using the Patch API will require you to upload a JSON Patch template using the following endpoint:</p>
-    <code>POST https://api.jsonpatch.me/upload/<br/><br/>
-      [
-      { "op": "replace", "path": "/baz", "value": "boo" },
-      { "op": "add", "path": "/hello", "value": ["world"] },
-      { "op": "remove", "path": "/foo" }
-    ]</code>
-    <p>This will return a JSON response:</p>
-    <code>{
-      "isSuccess": true,
-      "templateId": "94188217-e01f-4951-af9b-e32418b23e7c"
-    }</code>
-    <p>To patch a JSON document using the uploaded template use the following endpoint:</p>
-    <code>POST https://api.jsonpatch.me/patch/?templateId=94188217-e01f-4951-af9b-e32418b23e7c<br/><br/>
-      {
-        "baz": "qux",
-        "foo": "bar"
-      }</code>
-    <p>The request will return the patched JSON:</p>
-    <code>
-      {
-        "baz": "boo",
-        "hello": [
-          "world"
-        ]
-      }
-    </code>
-  </body>
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta http-equiv="cleartype" content="on">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>jsonpatch.me - Free online JSON Patch tool and API</title>
+        <meta name="description" content="Transform your JSON files with the free online JSON Patch tool. Supports both on-demand patching and uploading Patch files through the API.">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta name="apple-mobile-web-app-title" content="jsonpatch.me">
+        <link rel="canonical" href="https://jsonpatch.me/">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container text-center">
+                <h1>{ jsonpatch.me }</h1>
+                <p class="lead">Free JSON Patch tool and API</p>
+
+                <div class="row more-details align-items-center">
+                    <div class="col-lg-6 col-md-12 pr-lg-5 mb-4 mb-lg-0">
+                        <p class="subtitle">How it works</p>
+                        <p>jsonpatch.me is a free online service for running JSON Patch commands. JSON Patch is a transformation language for JSON files written in JSON.</p>
+                        <p>If you remember XSLT for transforming an XML file to another XML file using XML transformation commands, JSON Patch is sort of the same but for JSON files.</p>
+                        <p>jsonpatch.me has two features so far:</p>
+                        <button type="button" id="goToPatchOnDemand" class="btn btn-primary mr-1">On-demand Patch</button>
+                        <button type="button" id="goToPatchApi" class="btn btn-secondary">Patch API</button>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="json-code json-original" data-aos="fade-left">
+                            <pre><code>{
+    "baz": "qux",
+    "foo": "bar"
+}</code></pre>
+                            <div class="json-code-title">json</div>
+                        </div>
+                        <div class="json-code json-patch" data-aos="fade-left" data-aos-delay="600">
+                            <pre><code>[
+    { "op": "replace", "path": "/baz", "value": "boo" },
+    { "op": "add", "path": "/hello", "value": ["world"] },
+    { "op": "remove", "path": "/foo" }
+]</code></pre>
+                            <div class="json-code-title">patch</div>
+                        </div>
+                        <div class="json-code json-result" data-aos="zoom-in" data-aos-delay="1200">
+                            <pre class="mb-0"><code>{
+    "baz": "boo",
+    "hello": ["world"]
+}</code></pre>
+                            <div class="json-code-title">result</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="section-patch-on-demand">
+            <div class="container">
+                <h2>On-demand Patch</h2>
+                <p>If you need a single patch using a source JSON file and a JSON Patch file, you can use the on-demand tool available.</p>
+                <p>Input JSON and one or more patch commands below and see magic happen:</p>
+
+                <div class="form-group">
+                    <label for="json-textarea">JSON</label>
+                    <textarea class="form-control" id="json-textarea" rows="4">{
+    "baz": "qux",
+    "foo": "bar"
+}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="patch-textarea">Patch</label>
+                    <textarea class="form-control" id="patch-textarea" rows="5">[
+    { "op": "replace", "path": "/baz", "value": "boo" },
+    { "op": "add", "path": "/hello", "value": ["world"] },
+    { "op": "remove", "path": "/foo" }
+]</textarea>
+                </div>
+
+                <div class="row">
+                    <div class="col text-center mt-4">
+                        <button id="patch-json" class="btn btn-primary">Patch JSON</button>
+                    </div>
+                </div>
+
+                <div class="form-group form-group-result mb-0 d-none">
+                    <label for="result-textarea">Result</label>
+                    <textarea class="form-control" id="result-textarea" rows="3"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="section last" id="section-patch-api">
+            <div class="container">
+                <h2>Patch API</h2>
+                <p>If you need to run JSON Patch commands on a continuous basis (like from a build-server), you can use the JSON Patch API documented below. The JSON Patch API will let you upload JSON Patch commands on run these commands by making POST requests with the JSON to patch in the body.</p>
+                
+                <p>Input JSON and one or more patch commands below and see magic happen:</p>
+                <pre><code class="language-bash">POST https://api.jsonpatch.me/upload/</code></pre>
+                <pre><code class="language-json">[
+    { "op": "replace", "path": "/baz", "value": "boo" },
+    { "op": "add", "path": "/hello", "value": ["world"] },
+    { "op": "remove", "path": "/foo" }
+]</code></pre>
+
+                <p>This will return a JSON response:</p>
+                <pre><code class="language-json">{ "isSuccess": true, "templateId": "94188217-e01f-4951-af9b-e32418b23e7c" }</code></pre>
+
+                <p>To patch a JSON document using the uploaded template use the following endpoint:</p>
+                <pre><code class="language-bash">POST https://api.jsonpatch.me/patch/?templateId=94188217-e01f-4951-af9b-e32418b23e7c</code></pre>
+                <pre><code class="language-json">{ "baz": "qux", "foo": "bar" }</code></pre>
+
+                <p>The request will return the patched JSON:</p>
+                <pre class="mb-0"><code class="language-json">{ "baz": "boo", "hello": [ "world" ] }</code></pre>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container text-center">
+                <p class="mb-0">jsonpatch.me with ❤ by <a href="https://elmah.io" target="_blank">elmah.io</a></p>
+            </div>
+        </footer>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script src="js/highlight.min.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+
 </html>
