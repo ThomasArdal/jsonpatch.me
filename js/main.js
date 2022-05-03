@@ -20,6 +20,8 @@ $(document).ready(function() {
         // reset form
         $('.invalid-feedback').remove();
         $('.is-invalid').removeClass('is-invalid');
+        $('.form-group-result').addClass('d-none');
+        $('#result-textarea').val('');
 
         var json_textarea = $('#json-textarea'),
             json_textarea_val = $('#json-textarea').val(),
@@ -61,7 +63,8 @@ $(document).ready(function() {
             dataType: "json"
         })
         .done(function(response) {
-            console.log(response);
+            $('.form-group-result').removeClass('d-none');
+            $('#result-textarea').val(JSON.stringify(response, null, 4));
         });
 
     });
