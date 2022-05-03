@@ -56,7 +56,7 @@ $(document).ready(function() {
         $.ajax({
             url: "https://api.jsonpatch.me/fullpatch/",
             method: "POST",
-            data: JSON.stringify({ json: json_textarea_val, patch: patch_textarea_val }),
+            data: JSON.stringify({ "json": JSON.parse(json_textarea_val), "patch": JSON.parse(patch_textarea_val) }),
             contentType: "application/json",
             dataType: "json"
         })
