@@ -4,7 +4,7 @@ $(document).ready(function() {
     hljs.highlightAll();
 
     // aos init
-    AOS.init();
+    AOS.init({ once: true });
 
     // CTA
     $("#goToPatchOnDemand").click(function() {
@@ -55,17 +55,26 @@ $(document).ready(function() {
 
         if(!next) return;
 
-        $.ajax({
-            url: "https://api.jsonpatch.me/fullpatch/",
-            method: "POST",
-            data: JSON.stringify({ "json": JSON.parse(json_textarea_val), "patch": JSON.parse(patch_textarea_val) }),
-            contentType: "application/json",
-            dataType: "json"
-        })
-        .done(function(response) {
-            $('.form-group-result').removeClass('d-none');
-            $('#result-textarea').val(JSON.stringify(response, null, 4));
-        });
+        $('.spinner-border').removeClass('d-none');
+
+        setTimeout(function() {
+            $.ajax({
+                url: "https://api.jsonpatch.me/fullpatch/",
+                method: "POST",
+                data: JSON.stringify({ "json": JSON.parse(json_textarea_val), "patch": JSON.parse(patch_textarea_val) }),
+                contentType: "application/json",
+                dataType: "json"
+            })
+            .done(function(response) {
+                $('.spinner-border').addClass('d-none');
+                $('.form-group-result').removeClass('d-none');
+                $('#result-textarea').val(JSON.stringify(response, null, 4));
+            })
+            .fail(function (response) {
+                $('.spinner-border').addClass('d-none');
+                $('.form-group-result').addClass('d-none');
+            });
+        }, 500);
 
     });
 
