@@ -90,7 +90,7 @@ textarea.form-control {
     position: absolute;
     top: 4px;
     right: 6px;
-    font-size: 10px;
+    font-size: 11px;
     text-transform: uppercase;
     color: rgba(159, 166, 233, 0.6);
 }
@@ -149,11 +149,11 @@ color: #f0a800;
 .hljs-built_in,
 .hljs-selector-tag,
 .hljs-section {
-color: #c06048;
+color: #E66F51;
 }
 
 .hljs-keyword {
-color: #c06048;
+color: #E66F51;
 }
 
 .hljs-string,
@@ -174,7 +174,7 @@ color: #a0a7ea;
 
 .hljs-meta,
 .hljs-meta .hljs-string {
-color: #c06048;
+color: #E66F51;
 }
 
 .hljs-comment {
