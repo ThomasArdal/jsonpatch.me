@@ -69,17 +69,17 @@
                 <div class="form-group">
                     <label for="json-textarea">JSON</label>
                     <textarea class="form-control" id="json-textarea" rows="4">{
-    "baz": "qux",
-    "foo": "bar"
+    "message": "Hello World",
+    "from": "Unknown"
 }</textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="patch-textarea">Patch</label>
                     <textarea class="form-control" id="patch-textarea" rows="5">[
-    { "op": "replace", "path": "/baz", "value": "boo" },
-    { "op": "add", "path": "/hello", "value": ["world"] },
-    { "op": "remove", "path": "/foo" }
+    { "op": "replace", "path": "/message", "value": "Patching JSON is fun" },
+    { "op": "add", "path": "/with", "value": "jsonpatch.me" },
+    { "op": "remove", "path": "/from" }
 ]</textarea>
                 </div>
 
