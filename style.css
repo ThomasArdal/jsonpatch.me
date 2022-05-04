@@ -51,6 +51,7 @@ textarea.form-control {
     background-position: center;
     min-height: 600px;
     margin-bottom: 0;
+    overflow: hidden;
 }
 
 .jumbotron h1 {
