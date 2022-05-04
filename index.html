@@ -117,9 +117,9 @@
                 <p>Input JSON and one or more patch commands below and see magic happen:</p>
                 <pre><code class="language-bash">POST https://api.jsonpatch.me/upload/</code></pre>
                 <pre><code class="language-json">[
-    { "op": "replace", "path": "/baz", "value": "boo" },
-    { "op": "add", "path": "/hello", "value": ["world"] },
-    { "op": "remove", "path": "/foo" }
+    { "op": "replace", "path": "/message", "value": "Patching JSON is fun" },
+    { "op": "add", "path": "/with", "value": "jsonpatch.me" },
+    { "op": "remove", "path": "/from" }
 ]</code></pre>
 
                 <p>This will return a JSON response:</p>
@@ -127,10 +127,16 @@
 
                 <p>To patch a JSON document using the uploaded template use the following endpoint:</p>
                 <pre><code class="language-bash">POST https://api.jsonpatch.me/patch/?templateId=94188217-e01f-4951-af9b-e32418b23e7c</code></pre>
-                <pre><code class="language-json">{ "baz": "qux", "foo": "bar" }</code></pre>
+                <pre><code class="language-json">{
+    "message": "Hello World",
+    "from": "Unknown"
+}</code></pre>
 
                 <p>The request will return the patched JSON:</p>
-                <pre class="mb-0"><code class="language-json">{ "baz": "boo", "hello": [ "world" ] }</code></pre>
+                <pre class="mb-0"><code class="language-json">{
+    "message": "Patching JSON is fun",
+    "with": "jsonpatch.me"
+}</code></pre>
             </div>
         </div>
 
