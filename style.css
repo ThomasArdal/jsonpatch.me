@@ -54,9 +54,11 @@ textarea.form-control {
 }
 
 .jumbotron h1 {
-    font-size: 40px;
-    font-weight: 400;
     line-height: 1.2;
+}
+
+.jumbotron h1 svg {
+    max-width: 300px;
 }
 
 .jumbotron .more-details {
@@ -120,40 +122,53 @@ textarea.form-control {
     border-radius: 5px;
 }
 
+.badge {
+    font-size: 13px;
+}
+
+.badge-secondary {
+    color: #1f2043;
+    background-color: #f0a800;
+}
+
+.nohighlight {
+    color: #abaec7;
+}
+
 .hljs {
-color: #abaec7;
-font-weight: normal;
+    color: #abaec7;
+    font-weight: normal;
 }
 
 .hljs-subst {
-color: #9fa6e9;
+    color: #9fa6e9;
 }
 
 .hljs-title {
-color: #f0a800;
-font-weight: normal;
+    color: #f0a800;
+    font-weight: normal;
 }
 
 .hljs-name {
-color: #a1feff;
+    color: #a1feff;
 }
 
 .hljs-tag {
-color: #ffffff;
+    color: #ffffff;
 }
 
 .hljs-attr {
-color: #f0a800;
+    color: #f0a800;
 }
 
 .hljs-built_in,
 .hljs-selector-tag,
 .hljs-section {
-color: #E66F51;
+    color: #E66F51;
 }
 
 .hljs-keyword {
-color: #E66F51;
+    color: #E66F51;
 }
 
 .hljs-string,
@@ -169,16 +184,16 @@ color: #E66F51;
 .hljs-template-tag,
 .hljs-quote,
 .hljs-deletion {
-color: #a0a7ea;
+    color: #a0a7ea;
 }
 
 .hljs-meta,
 .hljs-meta .hljs-string {
-color: #E66F51;
+    color: #E66F51;
 }
 
 .hljs-comment {
-color: #ac65ff;
+    color: #ac65ff;
 }
 
 .hljs-keyword,
@@ -186,20 +201,20 @@ color: #ac65ff;
 .hljs-literal,
 .hljs-name,
 .hljs-strong {
-font-weight: normal;
+    font-weight: normal;
 }
 
 .hljs-literal,
 .hljs-number {
-color: #fa658d;
+    color: #fa658d;
 }
 
 .hljs-emphasis {
-font-style: italic;
+    font-style: italic;
 }
 
 .hljs-strong {
-font-weight: bold;
+    font-weight: bold;
 }
 
 footer {
