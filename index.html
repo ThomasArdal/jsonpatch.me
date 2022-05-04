@@ -115,7 +115,7 @@
                 <p>If you need to run JSON Patch commands on a continuous basis (like from a build-server), you can use the JSON Patch API documented below. The JSON Patch API will let you upload JSON Patch commands on run these commands by making POST requests with the JSON to patch in the body.</p>
                 
                 <p>Input JSON and one or more patch commands below and see magic happen:</p>
-                <pre><code class="language-bash">POST https://api.jsonpatch.me/upload/</code></pre>
+                <pre><code class="nohighlight"><span class="badge badge-secondary mr-1">POST</span> https://api.jsonpatch.me/upload/</code></pre>
                 <pre><code class="language-json">[
     { "op": "replace", "path": "/message", "value": "Patching JSON is fun" },
     { "op": "add", "path": "/with", "value": "jsonpatch.me" },
@@ -126,7 +126,7 @@
                 <pre><code class="language-json">{ "isSuccess": true, "templateId": "94188217-e01f-4951-af9b-e32418b23e7c" }</code></pre>
 
                 <p>To patch a JSON document using the uploaded template use the following endpoint:</p>
-                <pre><code class="language-bash">POST https://api.jsonpatch.me/patch/?templateId=94188217-e01f-4951-af9b-e32418b23e7c</code></pre>
+                <pre><code class="nohighlight"><span class="badge badge-secondary mr-1">POST</span> https://api.jsonpatch.me/patch/?templateId=94188217-e01f-4951-af9b-e32418b23e7c</code></pre>
                 <pre><code class="language-json">{
     "message": "Hello World",
     "from": "Unknown"
