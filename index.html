@@ -35,23 +35,23 @@
                     <div class="col-lg-6 col-md-12">
                         <div class="json-code json-original" data-aos="fade-left">
                             <pre><code>{
-    "baz": "qux",
-    "foo": "bar"
+    "message": "Hello World",
+    "from": "Unknown"
 }</code></pre>
                             <div class="json-code-title">json</div>
                         </div>
                         <div class="json-code json-patch" data-aos="fade-left" data-aos-delay="600">
                             <pre><code>[
-    { "op": "replace", "path": "/baz", "value": "boo" },
-    { "op": "add", "path": "/hello", "value": ["world"] },
-    { "op": "remove", "path": "/foo" }
+    { "op": "replace", "path": "/message", "value": "Patching JSON is fun" },
+    { "op": "add", "path": "/with", "value": "jsonpatch.me" },
+    { "op": "remove", "path": "/from" }
 ]</code></pre>
                             <div class="json-code-title">patch</div>
                         </div>
                         <div class="json-code json-result" data-aos="zoom-in" data-aos-delay="1200">
                             <pre class="mb-0"><code>{
-    "baz": "boo",
-    "hello": ["world"]
+    "message": "Patching JSON is fun",
+    "with": "jsonpatch.me"
 }</code></pre>
                             <div class="json-code-title">result</div>
                         </div>
