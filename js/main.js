@@ -22,6 +22,8 @@ $(document).ready(function() {
         $('.is-invalid').removeClass('is-invalid');
         $('.form-group-result').addClass('d-none');
         $('#result-textarea').val('');
+        $('.alert-response').addClass('d-none');
+        $('.alert-response .error-message').text('');
 
         var json_textarea = $('#json-textarea'),
             json_textarea_val = $('#json-textarea').val(),
@@ -72,8 +74,11 @@ $(document).ready(function() {
                 $('#result-textarea').val(JSON.stringify(patched, null, 4));
             })
             .fail(function (response) {
+                var message = response.responseJSON;
                 $('.spinner-border').addClass('d-none');
                 $('.form-group-result').addClass('d-none');
+                $('.alert-response .error-message').text(message.errorMessage);
+                $('.alert-response').removeClass('d-none');
             });
         }, 500);
 
