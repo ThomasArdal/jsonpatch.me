@@ -31,9 +31,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <meta property="og:image:width" content="1500" />
         <meta property="og:image:height" content="750" />
         <link rel="canonical" href="https://jsonpatch.me/">
+        <link rel="icon" type="image/png" href="images/android-chrome-192x192.png" sizes="192x192">
+        <link rel="icon" type="image/png" href="images/apple-touch-icon.png" sizes="180x180">
+        <link rel="icon" type="image/png" href="images/favicon-48x48.png" sizes="48x48">
+        <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16">
+        <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
@@ -125,7 +129,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         <div class="section last" id="section-patch-api">
             <div class="container">
-                <h2>Patch API</h2>
+                <div class="wrap-subtitle">
+                    <h2>Patch API</h2>
+                    <a href="https://api.jsonpatch.me/swagger/" target="_blank" class="btn btn-secondary btn-sm btn-documentation ml-auto"><span class="fa-book mr-1"></span><span>API Documentation</span></a>
+                </div>
                 <p>If you need to run JSON Patch commands on a continuous basis (like from a build-server), you can use the JSON Patch API documented below. The JSON Patch API will let you upload JSON Patch commands on run these commands by making POST requests with the JSON to patch in the body.</p>
                 
                 <p>Input JSON and one or more patch commands below and see magic happen:</p>
