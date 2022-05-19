@@ -68,7 +68,8 @@ $(document).ready(function() {
             .done(function(response) {
                 $('.spinner-border').addClass('d-none');
                 $('.form-group-result').removeClass('d-none');
-                $('#result-textarea').val(JSON.stringify(response, null, 4));
+                var patched = JSON.parse(response.result);
+                $('#result-textarea').val(JSON.stringify(patched, null, 4));
             })
             .fail(function (response) {
                 $('.spinner-border').addClass('d-none');
